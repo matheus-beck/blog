@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My personal programming blog</title>
+    <description>I&#39;m a computer engineering student at Federal University of Bahia who loves software development.  This blog has the purpose of help me track my programming learning road and to improve my learning process  by forcing me to teach someone else what I learn. 
+</description>
+    <link>http://yourdomain.com/</link>
+    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Tue, 13 Aug 2019 23:12:17 -0300</pubDate>
+    <lastBuildDate>Tue, 13 Aug 2019 23:12:17 -0300</lastBuildDate>
+    <generator>Jekyll v3.1.6</generator>
+    
+      <item>
+        <title>Hello World!</title>
+        <description>&lt;p&gt;Hello World,&lt;/p&gt;
+
+&lt;p&gt;My name is Matheus Beck and I’m passionate about learning new technologies and build things using code!&lt;/p&gt;
+
+&lt;p&gt;That’s why I decided to start this blog: to improve myself as a developer.&lt;/p&gt;
+
+&lt;p&gt;I’m from Brazil and I started programming in 2014 when I started the bachelor’s of computer engineering at Federal University of Bahia (UFBA). At UFBA, I learned a lot in the courses of Introduction to Logical Programming, Object-Oriented Programming, Data Structures and Algorithms, Software Engineering and Operating Systems.&lt;/p&gt;
+
+&lt;p&gt;Until July of 2016, I have learned C, C++ and Java but I wasn’t so passionate about coding. It all changed in August 2016 when I got a scholarship from CAPES to study computer science for one year at &lt;a href=&quot;http://ensimag.grenoble-inp.fr/&quot;&gt;Ensimag - Grenoble INP&lt;/a&gt; in France through the BRAFITEC exchange program. At Grenoble, I learned French and I got a strong foundation in computer science. From there, I fell in love with programming.&lt;/p&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+    &lt;img src=&quot;/assets/mr-robot.jpg&quot; alt=&quot;I&#39;m also a big fan of Mr. Robot :)&quot; /&gt;
+    &lt;figcaption style=&quot;text-align: center&quot;&gt;I&#39;m also a big fan of Mr. Robot :)&lt;/figcaption&gt;
+  &lt;/figure&gt;
+
+&lt;p&gt;When I returned to Brazil I got a job at &lt;a href=&quot;http://www.consiste.com.br&quot;&gt;Consiste Consultoria e Sistemas&lt;/a&gt; as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams of candidates to internship.&lt;/p&gt;
+
+&lt;p&gt;After one year, I got my second internship at &lt;a href=&quot;https://www.ericsson.com/en&quot;&gt;Ericsson Inovação S.A.&lt;/a&gt; where I’m currently working. At Ericsson I’m working with the development of an automation framework for the telecom industry using Typescript, Node.js and Cucumber. I also worked with the execution of manual tests using RESTful Web Services on SoapUI, Postman and Apache JMeter and the development of automated tests using Ruby and Cucumber.&lt;/p&gt;
+
+&lt;p&gt;You can verify some of my projects on my &lt;a href=&quot;http://www.github.com/matheus-beck/&quot;&gt;GitHub&lt;/a&gt; or my &lt;a href=&quot;http://www.gitshowcase.com/matheus-beck&quot;&gt;Portfolio Page&lt;/a&gt; and I really hope to help you somehow in some programming topic.&lt;/p&gt;
+
+&lt;p&gt;Thank you!&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 13 Aug 2019 21:27:56 -0300</pubDate>
+        <link>http://yourdomain.com/presentation/2019/08/13/hello-world.html</link>
+        <guid isPermaLink="true">http://yourdomain.com/presentation/2019/08/13/hello-world.html</guid>
+        
+        
+        <category>presentation</category>
+        
+      </item>
+    
+  </channel>
+</rss>
