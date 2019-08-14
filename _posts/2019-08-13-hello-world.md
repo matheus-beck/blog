@@ -10,7 +10,7 @@ My name is Matheus Beck and I’m passionate about learning new technologies and
 
 That's why I decided to start this blog: to improve myself as a developer.
 
-I'm from Brazil and I started programming in 2014 when I started the bachelor's of computer engineering at Federal University of Bahia (UFBA). At UFBA, I learned a lot in the courses of Introduction to Logical Programming, Object-Oriented Programming, Data Structures and Algorithms, Software Engineering and Operating Systems. 
+I'm from Brazil and I started programming in 2014 when I started the bachelor's of computer engineering at Federal University of Bahia (UFBA). At UFBA, I learned a lot from the courses of Introduction to Logical Programming, Object-Oriented Programming, Data Structures and Algorithms, Software Engineering and Operating Systems. 
 
 Until July of 2016, I have learned C, C++ and Java but I wasn't so passionate about coding. It all changed in August 2016 when I got a scholarship from CAPES to study computer science for one year at [Ensimag - Grenoble INP][ensimag] in France through the BRAFITEC exchange program. At Grenoble, I learned French and I got a strong foundation in computer science. From there, I fell in love with programming. 
 
