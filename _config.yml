@@ -13,7 +13,7 @@ description: > # this means to ignore newlines until "baseurl:"
   This blog has the purpose of help me track my programming learning road and to improve my learning process 
   by forcing me to teach someone else what I learn. 
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "http://yourdomain.com" # the base hostname & protocol for your site
+url: "https://matheus-beck.github.io/blog/" # the base hostname & protocol for your site
 linkedin_username: matheus-beck
 github_username:  matheus-beck
 
