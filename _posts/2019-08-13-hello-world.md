@@ -16,7 +16,7 @@ Until July of 2016, I have learned C, C++ and Java but I wasn't so passionate ab
 
 {% include image.html url="/blog/assets/mr-robot.jpg" description="I'm also a big fan of Mr. Robot :)" %}
 
-When I returned to Brazil I got a job at [Consiste Consultoria e Sistemas][consiste] as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams of candidates to internship.
+When I returned to Brazil I got a job at [Consiste Consultoria e Sistemas][consiste] as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams from the candidates to internship.
 
 After one year, I got my second internship at [Ericsson Inovação S.A.][ericsson] where I’m currently working. At Ericsson I’m working with the development of an automation framework for the telecom industry using Typescript, Node.js and Cucumber. I also worked with the execution of manual tests using RESTful Web Services on SoapUI, Postman and Apache JMeter and the development of automated tests using Ruby and Cucumber.
 
