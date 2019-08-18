@@ -10,10 +10,9 @@ title: Beck Programming Blog
 email: matheus.alencabeck@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   I'm a computer engineering student at Federal University of Bahia who loves software development. 
-  This blog has the purpose of help me track my programming learning road and to improve my learning process 
-  by forcing me to teach someone else what I learn. 
-baseurl: "/blog" # the subpath of your site, e.g. /blog
-url: "https://matheus-beck.github.io/" # the base hostname & protocol for your site
+  This blog has the purpose of helping me track my programming learning journey and to improve my learning process by forcing me to teach someone else what I've been learning. 
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "http://yourdomain.com" # the base hostname & protocol for your site
 linkedin_username: matheus-beck
 github_username:  matheus-beck
 
