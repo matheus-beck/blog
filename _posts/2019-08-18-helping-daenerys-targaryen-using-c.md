@@ -27,10 +27,6 @@ One of those exercises was really fun to solve. I've highlighted the most import
 
 **Examples:**
 
-Input: 4 3  
-Input: worm gray, hawk gleaming, golden eagle, draktonor  
-Output: hawk gleaming 
-
 Input: 5 3  
 Input: vilan, malganor, tristam, tylian, anduin  
 Output: tristam  
@@ -60,7 +56,7 @@ After that, we have to verify the condition that says 1 ≤ I ≤ S ≤ 100 and 
 #include <stdlib.h>
 
 int main() {
-    int soldiers, numberDrawn;
+    int soldiers, numberDrawn, i;
     scanf("%d %d", &soldiers, &numberDrawn);
 
     if (1 <= numberDrawn && numberDrawn <= soldiers && soldiers <= 100) {
@@ -83,9 +79,10 @@ Our exercise also says that the names of Daenerys soldiers must be between 1 and
 ```c
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    int soldiers, numberDrawn;
+    int soldiers, numberDrawn, i, j;
     scanf("%d %d", &soldiers, &numberDrawn);
 
     if (1 <= numberDrawn && numberDrawn <= soldiers && soldiers <= 100) {
@@ -115,9 +112,10 @@ Now here comes the most important part of the exercise, we're going to receive a
 ```c
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 int main() {
-    int soldiers, numberDrawn;
+    int soldiers, numberDrawn, i, j;
     scanf("%d %d", & soldiers, & numberDrawn);
 
     if (1 <= numberDrawn && numberDrawn <= soldiers && soldiers <= 100) {
