@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "Helping Daenerys Targaryen using C"
-date:   2019-08-15 18:21:56 -0300
+date:   2019-08-18 18:21:56 -0300
 categories: presentation
 ---
 
