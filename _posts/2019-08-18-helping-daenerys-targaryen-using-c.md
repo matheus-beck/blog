@@ -5,7 +5,7 @@ date:   2019-08-15 18:21:56 -0300
 categories: presentation
 ---
 
-{% include image.html url="/assets/daenerys.jpg" description="Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons " %}
+{% include image.html url="/blog/assets/daenerys.jpg" description="Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons " %}
 
 <br>At the beginning of 2018 I took a class at UFBA, MATA40 - Algorithms and Data Structures, that made me solve a lot of programming execersices using a programming language called C.
 
