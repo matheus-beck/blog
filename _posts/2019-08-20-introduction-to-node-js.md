@@ -41,7 +41,7 @@ It means that when we make a request to Node.js, like access a page that will re
 
 `ExpressJS` is a Node.js framework very good for beginners because it is a micro-framework. That is, small functionalities that play their functions very well. It is very used in micro-services.
 
-<br>Thank you for your time! I hope you have like this post!
+<br>Thank you for your time! I hope you have liked this post!
 
 ***   
 <br>Source: [GoStack Bootcamp from RocketSeat][rocketseat]  
