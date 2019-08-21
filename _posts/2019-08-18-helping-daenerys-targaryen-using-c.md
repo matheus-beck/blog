@@ -5,7 +5,7 @@ date:   2019-08-18 18:21:56 -0300
 categories: presentation
 ---
 
-{% include image.html url="/blog/assets/daenerys.jpg" description="Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons" %}
+{% include image.html url="/blog/assets/daenerys.jpg" description="Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons :dragon_face:" %}
 
 <br>At the beginning of 2018 I took a class at UFBA, MATA40 - Algorithms and Data Structures, that made me solve a lot of programming execersices using a programming language called C.
 
@@ -13,7 +13,7 @@ One of those exercises was really fun to solve. I've highlighted the most import
 
 ***
 
-<br> **General of the Immaculate** :dragon_face:
+<br> **General of the Immaculate** 
 
 > Daenerys Targaryen is the leader of the mighty army of the Immaculate. As part of a deal, <mark>she promised to raffle a soldier to be proclaimed general of her army</mark>. For the draw, <mark>she placed S pieces of parchment numbered 1 through S in a bag and drew a certain number I; The winner was the Ith soldier on her list</mark>. But Daenerys lost the list of soldiers in her last fight, so she doesn't know which number corresponds to each soldier. As a good queen, <mark> she knows the names of all her soldiers, and also that their numbers are assigned according to the alphabetical order. </mark> But her soldiers are very anxious and soon want to know who was the ovent, chosen to be the general. Given the names of Daenerys's soldiers and the number drawn, determine the name of the soldiers who must be the new Immaculate general.
 
