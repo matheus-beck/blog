@@ -13,11 +13,11 @@ Node.js is a platform that allow us to use JavaScript in the backend. It is buil
 
 ## What is npm?
 
-The name `npm` means Node Package Manager. It is used to install and manage third party libraries. It also allow us to publish our own libraries.
+The name `npm` means Node Package Manager. It is used to install and manage third party libraries. It also allows us to publish our own libraries.
 
 ## What is Yarn?
 
-`Yarn` is also a package manager for Node.js that allow us to do basically everything that `npm` does but `Yarn` has two main advantages:  
+`Yarn` is also a package manager for Node.js that allows us to do basically everything that `npm` does but `Yarn` has two main advantages:  
 <ol>
   <li> It is <strong>faster</strong>. </li>  
   <li> It has functionalities that npm doesn't have. Example: Yarn Workspace. It is used to share dependencies between projects when we're working on multiple projects with the same dependencies in the same folder. </li>   
@@ -31,11 +31,11 @@ This architecture is based on events been registered in the Call Stack. The Call
 
 #### Single-Thread
 
-It means it executes in a single thread of our processor. Imagine if we have a processor with four cores. Node.js won't execute at the same time in all cores. All his process will be allocated in a single core. But, Node.js uses a lot of libs from C++, like libuv, that allow us to use multi threads of our processor. So, under the table, the C++ is using the other process threads to process our Call Stack in an faster and more efficient way.
+It means it executes in a single thread of our processor. Imagine if we have a processor with four cores. Node.js won't execute at the same time in all cores. All his process will be allocated in a single core. But, Node.js uses a lot of libs from C++, like libuv, that allow us to use multi threads of our processor. So, under the table, the C++ is using the other process threads to process our Call Stack in a faster and more efficient way.
 
 #### Non-blocking I/O
 
-It means that when we make a request to Node.js, like access a page that will return a list, we don't have to return all data from once. Node.js can return this list in parts. It means that when giving a response for the client, Node.js won't block the execution. Using this concept we can have real time applications like a chat. That is, when my front end calls my backend I can maintain an open connection to receive more and more requests.
+It means that when we make a request to Node.js, like access a page that will return a list, we don't have to return all data from once. Node.js can return this list in parts. It means that when giving a response to the client, Node.js won't block the execution. Using this concept we can have real time applications like a chat. That is, when my front end calls my backend I can maintain an open connection to receive more and more requests.
 
 ## ExpressJS
 
