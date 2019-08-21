@@ -16,5 +16,8 @@ url: "https://matheus-beck.github.io/" # the base hostname & protocol for your s
 linkedin_username: matheus-beck
 github_username:  matheus-beck
 
+plugins:
+  - jemoji
+
 # Build settings
 markdown: kramdown
