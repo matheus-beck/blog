@@ -18,8 +18,10 @@ The name `npm` means Node Package Manager. It is used to install and manage thir
 ## What is Yarn?
 
 `Yarn` is also a package manager for Node.js that allow us to do basically everything that `npm` does but `Yarn` has two main advantages:  
-1 - It is <strong>faster</strong>  
-2 - It has functionalities that npm doesn't have. Example: Yarn Workspace. It is used to share dependencies between projects when we're working on multiple projects with the same dependencies in the same folder.
+<ol>
+  <li> It is <strong>faster</strong>. </li>  
+  <li> It has functionalities that npm doesn't have. Example: Yarn Workspace. It is used to share dependencies between projects when we're working on multiple projects with the same dependencies in the same folder. </li>   
+</ol>  
 
 ## Characteristics of Node.js
 
@@ -40,3 +42,7 @@ It means that when we make a request to Node.js, like access a page that will re
 `ExpressJS` is a Node.js framework very good for beginners because it is a micro-framework. That is, small functionalities that play their functions very well. It is very used in micro-services.
 
 <br>Thank you for your time! I hope you have like this post!
+
+***
+Source: [GoStack Bootcamp from RocketSeat][rocketseat]  
+[rocketseat]: https://rocketseat.com.br/
