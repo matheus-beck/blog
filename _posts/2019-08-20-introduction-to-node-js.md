@@ -39,9 +39,47 @@ It means that when we make a request to Node.js, like access a page that will re
 
 ## ExpressJS
 
-`ExpressJS` is a Node.js framework very good for beginners because it is a micro-framework. That is, small functionalities that play their functions very well. It is very used in micro-services.
+`ExpressJS` is a Node.js framework very good for beginners because it allows us to create REST APIs faster and in a simple way. It is a micro-framework, i.e. small functionalities that play their functions very well. And it is very used in micro-services.
 
-<br>Thank you for your time! I hope you have liked this post!
+## Hello Node.js
+
+Create a folder called `hello-node` and execute the following command inside that folder:  
+```console
+yarn init -y
+```
+This command will initiate our project creating a file called `package.json`. This file will save all the references to the dependencies that we're going to use (like Express.js). 
+
+Also, inside that folder, execute the command:
+```console
+yarn add express 
+```
+This command will install Express.js as our dependency. Realize that now we have a `node_modules` folder containing the source code of Express.js and all the dependencies that Express.js uses.
+
+Now, create a file called `index.js` and type:
+
+```javascript
+const express = require('express');
+
+const server = express();
+
+server.get('/', (req, res) => {
+    return res.json({ message: 'Hello Node' });
+    
+});
+
+server.listen(3000);
+```
+
+Now, if we run the command 
+```console
+node index.js
+````
+and access http://localhost:3000/ in our browser we'll see that Node.js returned us an object like { "message":"Hello Node" }.
+
+We could have use ```return res.send('Hello World');``` to return a string, but it is a best practice in the development of a REST API to always make our backend return a JSON.
+
+
+<br>Thank you for your time! I hope you have liked this post! :smile:
 
 ***   
 <br>Source: [GoStack Bootcamp from RocketSeat][rocketseat]  
