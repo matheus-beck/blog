@@ -74,7 +74,10 @@ Now, if we run the command
 ```console
 node index.js
 ````
-and access http://localhost:3000/ in our browser we'll see that Node.js returned us an object like { "message":"Hello Node" }.
+and access http://localhost:3000/ in our browser we'll see that Node.js returned us an object like 
+```json 
+{ "message":"Hello Node" }
+```
 
 We could have use ```return res.send('Hello World');``` to return a string, but it is a best practice in the development of a REST API to always make our backend return a JSON.
 
