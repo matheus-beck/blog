@@ -1,8 +1,8 @@
 ---
 layout: post
-title: "Introduction to Node.js"
+title: "Introduction to Node.js and Express.js"
 date: 2019-08-20 18:21:56 -0300
-categories: node.js
+categories: node.js express.js
 ---
 
 {% include image.html url="/blog/assets/node.png" description="" %}
@@ -64,7 +64,6 @@ const server = express();
 
 server.get('/', (req, res) => {
     return res.json({ message: 'Hello Node' });
-    
 });
 
 server.listen(3000);
