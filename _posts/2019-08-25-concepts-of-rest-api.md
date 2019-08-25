@@ -28,12 +28,12 @@ A REST API uses routes of communication that uses HTTP methods ( GET, POST, PUT 
 
 Examples:
 
-| HTTP method | URL                 | Route Parameters | Query Parameters |
-| ----------- | ------------------- | ---------------- | ---------------- |
-| GET         | http://minhaapi.com | /users           | ?page=2          |
-| POST        | http://minhaapi.com | /users           |                  |
-| PUT         | http://minhaapi.com | /users           |                  |
-| DELETE      | http://minhaapi.com | /users           |                  |
+| HTTP method | URL                 | Route            | Route Parameters | Query Parameters |
+| ----------- | ------------------- | ---------------- | ---------------- | ---------------- |
+| GET         | http://minhaapi.com | /users           |                  |   ?page=2        |
+| POST        | http://minhaapi.com | /users           |                  |                  |
+| PUT         | http://minhaapi.com | /users           |       /1         |                  |
+| DELETE      | http://minhaapi.com | /users           |       /1         |                  |
 
 POST and PUT methods can also send a 'body' of content in the requisition. The advantage of this is that 'body' parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure.
 
