@@ -41,21 +41,22 @@ Headers (GET, POST, PUT, DELETE): Additional data that are not related to the re
 
 ## HTTP codes
 
-HTTP codes represent the possible states of an HTTP response. They can be:
-1xx: Informational
-2xx: Sucess
-200 Sucess
-201 Created
-3xx: Redirection
-301 Moved Permanently
-302 Moved
-4xx: Client Error
-400 Bad request
-401 Unauthorized
-404 Not found
-5xx: Server Error
-500 Internal Server Errors
+HTTP codes represent the possible states of an HTTP response. They can be:  
+  
+1xx: Informational  
+2xx: Sucess  
+&nbsp;&nbsp;&nbsp;&nbsp;200 Sucess  
+&nbsp;&nbsp;&nbsp;&nbsp;201 Created  
+3xx: Redirection  
+&nbsp;&nbsp;&nbsp;&nbsp;301 Moved Permanently  
+&nbsp;&nbsp;&nbsp;&nbsp;302 Moved  
+4xx: Client Error  
+&nbsp;&nbsp;&nbsp;&nbsp;400 Bad request  
+&nbsp;&nbsp;&nbsp;&nbsp;401 Unauthorized  
+&nbsp;&nbsp;&nbsp;&nbsp;404 Not found  
+5xx: Server Error  
+&nbsp;&nbsp;&nbsp;&nbsp;500 Internal Server Errors  
 
 ---
 
-Thank you for your time! I hope you have liked this post! :relaxed:
+<br>Thank you for your time! I hope you have liked this post! :relaxed:
