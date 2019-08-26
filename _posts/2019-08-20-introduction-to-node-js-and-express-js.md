@@ -80,6 +80,26 @@ and access http://localhost:3000/ in our browser we'll see that Node.js returned
 
 We could have use ```return res.send('Hello World');``` to return a string, but it is a best practice in the development of a [REST API][rest-api] to always make our backend return a JSON.
 
+## Getting Query Parameters and Route Parameters
+
+To pass and access data through query parameters or route parameters we could use:  
+
+```javascript
+// Getting Query Parameters
+// Example: http://localhost:3000/?name=Matheus
+
+server.get('/', (req, res) => {
+    return res.json({ message: `Hello ${req.query.name}` });
+});
+
+// Getting Route Parameters
+// Example: http://localhost:3000/users/1
+
+server.get('/users/:id', (req, res) => {
+    return res.json({ message: `Acessing user with id ${req.params.id}` });
+});
+```  
+
 
 <br>Thank you for your time! I hope you have liked this post! :smile:
 
