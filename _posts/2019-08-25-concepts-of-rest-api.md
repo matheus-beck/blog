@@ -5,7 +5,7 @@ date: 2019-08-25 18:21:56 -0300
 categories: rest api
 ---
 
-{% include image.html url="/blog/assets/rest-api.jpg" description="" %}
+{% include image.html url="/blog/assets/rest-api.png" description="" %}
 
 <style>
 .tablelines table, .tablelines td, .tablelines th {
