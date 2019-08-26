@@ -42,7 +42,13 @@ Examples:
 | DELETE      | http://minhaapi.com | /users           |       /1         |                  |
 {: .tablelines}
 
-<br>POST and PUT methods can also send a 'body' of content in the requisition. The advantage of this is that 'body' parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure.
+<br>POST and PUT methods can also send a 'request body' in the requisition. The advantage of this is that 'request body' parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure. An example of a request body would be:
+```json
+{
+    "name": "Matheus"
+    "email": "matheus.alencarbeck@gmail.com"
+}
+```
 
 Headers: Additional data that are not related to the requisition content. Example: It can be used to send authentication like a location.
 
