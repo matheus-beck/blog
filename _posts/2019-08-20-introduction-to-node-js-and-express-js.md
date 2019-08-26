@@ -78,7 +78,7 @@ and access http://localhost:3000/ in our browser we'll see that Node.js returned
 { "message":"Hello Node" }
 ```
 
-We could have use ```return res.send('Hello World');``` to return a string, but it is a best practice in the development of a REST API to always make our backend return a JSON.
+We could have use ```return res.send('Hello World');``` to return a string, but it is a best practice in the development of a [REST API][rest-api] to always make our backend return a JSON.
 
 
 <br>Thank you for your time! I hope you have liked this post! :smile:
@@ -88,3 +88,4 @@ We could have use ```return res.send('Hello World');``` to return a string, but 
 
 
 [rocketseat]: https://rocketseat.com.br/
+[rest-api]: https://matheus-beck.github.io/blog/rest/api/2019/08/25/concepts-of-rest-api.html
