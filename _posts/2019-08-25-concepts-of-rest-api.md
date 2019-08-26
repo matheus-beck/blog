@@ -64,6 +64,10 @@ HTTP codes represent the possible states of an HTTP response. They can be:
 5xx: Server Error  
 &nbsp;&nbsp;&nbsp;&nbsp;500 Internal Server Errors  
 
----
-
 <br>Thank you for your time! I hope you have liked this post! :relaxed:
+
+***   
+<br>Source: [GoStack Bootcamp from RocketSeat][rocketseat]  
+
+
+[rocketseat]: https://rocketseat.com.br/
