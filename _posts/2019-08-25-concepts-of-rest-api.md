@@ -34,23 +34,22 @@ A REST API uses routes of communication that uses HTTP methods ( GET, POST, PUT 
 
 Examples:
 
-| HTTP method | URL                 | Route            | Route Parameters | Query Parameters |
-| ----------- | ------------------- | ---------------- | ---------------- | ---------------- |
-| GET         | http://minhaapi.com | /users           |                  |   ?page=2        |
-| POST        | http://minhaapi.com | /users           |                  |                  |
-| PUT         | http://minhaapi.com | /users           |       /1         |                  |
-| DELETE      | http://minhaapi.com | /users           |       /1         |                  |
+| HTTP method | URL              | Route   | Route Parameters | Query Parameters |
+| ----------- | -----------------| ------- | ---------------- | ---------------- |
+| GET         | http://myapi.com | /users  |                  |   ?page=2        |
+| POST        | http://myapi.com | /users  |                  |                  |
+| PUT         | http://myapi.com | /users  |       /1         |                  |
+| DELETE      | http://myapi.com | /users  |       /1         |                  |
 {: .tablelines}
 
-<br>POST and PUT methods can also send a 'request body' in the requisition. The advantage of this is that 'request body' parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure. An example of a request body would be:
+<br>POST and PUT methods can also send a *request body* in their requests. The advantage of this is that request body parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure. An example of a request body would be:
 ```json
 {
-    "name": "Matheus"
+    "name": "Matheus",
     "email": "matheus.alencarbeck@gmail.com"
 }
 ```
-
-Headers: Additional data that are not related to the requisition content. Example: It can be used to send authentication like a location.
+Another parameter that all HTTP methods described here can use is *Headers*. They are additional data that are not related to the requisition content. Example: It can be used to send authentication like a location.
 
 ## HTTP codes
 
