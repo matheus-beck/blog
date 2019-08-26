@@ -7,6 +7,12 @@ categories: rest api
 
 {% include image.html url="/blog/assets/rest-api.jpg" description="" %}
 
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
+
 ## REST API
 
 A REST API is an architecture of development that works as a flux of requests and responses.
@@ -34,6 +40,7 @@ Examples:
 | POST        | http://minhaapi.com | /users           |                  |                  |
 | PUT         | http://minhaapi.com | /users           |       /1         |                  |
 | DELETE      | http://minhaapi.com | /users           |       /1         |                  |
+{: .tablelines}
 
 POST and PUT methods can also send a 'body' of content in the requisition. The advantage of this is that 'body' parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure.
 
