@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "CRUD using Express.js middleware"
-date: 2019-08-25 18:21:56 -0300
+date: 2019-08-28 18:21:56 -0300
 categories: crud node.js express.js
 ---
 
