@@ -150,7 +150,7 @@ server.delete("/users/:index", checkUserInArray, (req, res) => {
   /* Same code ... */
 });
 ```
-
+## API Calls:
 To test our server, use a REST client like [Insomnia][insomnia]:
 
 #### CREATE USER:
