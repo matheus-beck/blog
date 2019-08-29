@@ -7,11 +7,11 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <title>Helping Daenerys Targaryen using C</title>
-  <meta name="description" content="        Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons   ">
+  <meta name="description" content="    Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons :dragon_face:">
 
-  <link rel="stylesheet" href="/css/main.css">
-  <link rel="canonical" href="http://yourdomain.com/presentation/2019/08/15/helping-daenerys-targaryen-using-c.html">
-  <link rel="alternate" type="application/rss+xml" title="Beck Programming Blog" href="http://yourdomain.com/feed.xml">
+  <link rel="stylesheet" href="/blog/css/main.css">
+  <link rel="canonical" href="https://matheus-beck.github.io//blog/presentation/2019/08/18/helping-daenerys-targaryen-using-c.html">
+  <link rel="alternate" type="application/rss+xml" title="Beck Programming Blog" href="https://matheus-beck.github.io//blog/feed.xml">
 </head>
 
 
@@ -21,7 +21,7 @@
 
   <div class="wrapper">
 
-    <a class="site-title" href="/">Beck Programming Blog</a>
+    <a class="site-title" href="/blog/">Beck Programming Blog</a>
 
     <nav class="site-nav">
       <a href="#" class="menu-icon">
@@ -35,7 +35,7 @@
       <div class="trigger">
         
           
-          <a class="page-link" href="/about/">About</a>
+          <a class="page-link" href="/blog/about/">About</a>
           
         
           
@@ -58,16 +58,25 @@
 
   <header class="post-header">
     <h1 class="post-title" itemprop="name headline">Helping Daenerys Targaryen using C</h1>
-    <p class="post-meta"><time datetime="2019-08-15T18:21:56-03:00" itemprop="datePublished">Aug 15, 2019</time></p>
+    <p class="post-meta"><time datetime="2019-08-18T18:21:56-03:00" itemprop="datePublished">Aug 18, 2019</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <figure class="image">
-    <img src="/assets/daenerys.jpg" alt="Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons " />
-    <figcaption style="text-align: center">Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons </figcaption>
-  </figure>
+    <style>
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+</style>
 
-<p><br />At the beginning of 2018 I took a class at UFBA, MATA40 - Algorithms and Data Structures, that made me solve a lot of programming execersices using a programming language called C.</p>
+<figure class="image">
+  <img class="center" src="/blog/assets/daenerys.jpg" alt="Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons :dragon_face:" />
+  <figcaption style="text-align: center">Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons :dragon_face:</figcaption>
+</figure>
+
+<p><br />At the beginning of 2018, I took a class at UFBA, MATA40 - Algorithms and Data Structures, that made me solve a lot of programming exercises using a programming language called C.</p>
 
 <p>One of those exercises was really fun to solve. I’ve highlighted the most important sentences to solve this problem below:</p>
 
@@ -76,7 +85,7 @@
 <p><br /> <strong>General of the Immaculate</strong></p>
 
 <blockquote>
-  <p>Daenerys Targaryen is the leader of the mighty army of the Immaculate. As part of a deal, <mark>she promised to raffle a soldier to be proclaimed general of her army</mark>. For the draw, <mark>she placed S pieces of parchment numbered 1 through S in a bag and drew a certain number I; The winner was the Ith soldier on her list</mark>. But Daenerys lost the list of soldiers in her last fight, so she doesn’t know which number corresponds to each soldier. As a good queen, <mark> she knows the names of all her soldiers, and also that their numbers are assigned according to the alphabetical order. </mark> But her soldiers are very anxious and soon want to know who was the ovent, chosen to be the general. Given the names of Daenerys’s soldiers and the number drawn, determine the name of the soldiers who must be the new Immaculate general.</p>
+  <p>Daenerys Targaryen is the leader of the mighty army of the Immaculate. As part of a deal, <mark>she promised to raffle a soldier to be proclaimed general of her army</mark>. For the draw, <mark>she placed S pieces of parchment numbered 1 through S in a bag and drew a certain number I; The winner was the Ith soldier on her list</mark>. But Daenerys lost the list of soldiers in her last fight, so she doesn’t know which number corresponds to each soldier. As a good queen, <mark> she knows the names of all her soldiers, and also that their numbers are assigned according to the alphabetical order. </mark> But her soldiers are very anxious and soon want to know who was the chosen to be the general. Given the names of Daenerys’s soldiers and the number drawn, determine the name of the soldiers who must be the new Immaculate general.</p>
 </blockquote>
 
 <p><strong>Input:</strong></p>
@@ -93,19 +102,15 @@
 
 <p><strong>Examples:</strong></p>
 
-<p>Input: 4 3<br />
-Input: worm gray, hawk gleaming, golden eagle, draktonor<br />
-Output: hawk gleaming</p>
-
 <p>Input: 5 3<br />
 Input: vilan, malganor, tristam, tylian, anduin<br />
 Output: tristam</p>
 
 <hr />
 
-<p><br /> First, let’s understand what the exercise is asking. From the text, we assume that given an bag with pieces of parchment that contain a number correspondig to one of the soldiers, Daenerys will randomly pick a number from that bag and the soldier correspondig to that number will be the general. The soldiers are numered according to the alphabetical order.</p>
+<p><br /> First, let’s understand what the exercise is asking. From the text, we assume that given a bag with pieces of parchment that contain a number corresponding to one of the soldiers, Daenerys will randomly pick a number from that bag and the soldier correspondig to that number will be the general. The soldiers are numbered according to the alphabetical order.</p>
 
-<p>To achieve that, create a file called <code class="highlighter-rouge">imacculate.c</code> and write the following, correspondig to the first part of our input (Two integers corresponding to the amount of soldiers that will be inserted and the number drawn from the bag):</p>
+<p>To achieve that, create a file called <code class="highlighter-rouge">immacculate.c</code> and write the following, correspondig to the first part of our input (Two integers corresponding to the number of soldiers that will be inserted and the number drawn from the bag):</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
@@ -118,13 +123,13 @@ Output: tristam</p>
 <span class="p">}</span>
 
 </code></pre></div></div>
-<p>After that, we have to verify the condition that says 1 ≤ I ≤ S ≤ 100 and receive our list of soldiers. For standard, C returns 0 for sucess, so we’re going to assume 1 as our failling scnenario.</p>
+<p>After that, we have to verify the condition that says 1 ≤ I ≤ S ≤ 100 and receive our list of soldiers. For standard, C returns 0 for success, so we’re going to assume 1 as our failing scenario.</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">soldiers</span><span class="p">,</span> <span class="n">numberDrawn</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">soldiers</span><span class="p">,</span> <span class="n">numberDrawn</span><span class="p">,</span> <span class="n">i</span><span class="p">;</span>
     <span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">soldiers</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numberDrawn</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">numberDrawn</span> <span class="o">&amp;&amp;</span> <span class="n">numberDrawn</span> <span class="o">&lt;=</span> <span class="n">soldiers</span> <span class="o">&amp;&amp;</span> <span class="n">soldiers</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
@@ -146,9 +151,10 @@ Output: tristam</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">soldiers</span><span class="p">,</span> <span class="n">numberDrawn</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">soldiers</span><span class="p">,</span> <span class="n">numberDrawn</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
     <span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">soldiers</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">numberDrawn</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">numberDrawn</span> <span class="o">&amp;&amp;</span> <span class="n">numberDrawn</span> <span class="o">&lt;=</span> <span class="n">soldiers</span> <span class="o">&amp;&amp;</span> <span class="n">soldiers</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
@@ -177,9 +183,10 @@ Output: tristam</p>
 
 <div class="language-c highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">#include &lt;stdio.h&gt;
 #include &lt;stdlib.h&gt;
+#include &lt;string.h&gt;
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
-    <span class="kt">int</span> <span class="n">soldiers</span><span class="p">,</span> <span class="n">numberDrawn</span><span class="p">;</span>
+    <span class="kt">int</span> <span class="n">soldiers</span><span class="p">,</span> <span class="n">numberDrawn</span><span class="p">,</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span><span class="p">;</span>
     <span class="n">scanf</span><span class="p">(</span><span class="s">"%d %d"</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">soldiers</span><span class="p">,</span> <span class="o">&amp;</span> <span class="n">numberDrawn</span><span class="p">);</span>
 
     <span class="k">if</span> <span class="p">(</span><span class="mi">1</span> <span class="o">&lt;=</span> <span class="n">numberDrawn</span> <span class="o">&amp;&amp;</span> <span class="n">numberDrawn</span> <span class="o">&lt;=</span> <span class="n">soldiers</span> <span class="o">&amp;&amp;</span> <span class="n">soldiers</span> <span class="o">&lt;=</span> <span class="mi">100</span><span class="p">)</span> <span class="p">{</span>
@@ -217,7 +224,7 @@ Output: tristam</p>
 </span>    <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>Thank you for your time, I hope you have like this post!</p>
+<p>Thank you for your time, I hope you have liked this post!</p>
 
   </div>
 
@@ -275,7 +282,7 @@ Output: tristam</p>
       </div>
 
       <div class="footer-col footer-col-3">
-        <p>I'm a computer engineering student at Federal University of Bahia who loves software development.  This blog has the purpose of helping me track my programming learning journey and to improve my learning process by forcing me to teach someone else what I've been learning. 
+        <p>I'm a computer engineering student at Federal University of Bahia who loves software development.  This blog has the purpose of helping me track my programming learning journey and to improve my learning process by forcing me to teach someone else what I've been learning.
 </p>
       </div>
     </div>

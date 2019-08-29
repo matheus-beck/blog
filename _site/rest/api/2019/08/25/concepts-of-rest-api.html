@@ -6,11 +6,11 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <title>Hello World!</title>
-  <meta name="description" content="Hello World,">
+  <title>Concepts of REST API</title>
+  <meta name="description" content="    ">
 
   <link rel="stylesheet" href="/blog/css/main.css">
-  <link rel="canonical" href="https://matheus-beck.github.io//blog/presentation/2019/08/13/hello-world.html">
+  <link rel="canonical" href="https://matheus-beck.github.io//blog/rest/api/2019/08/25/concepts-of-rest-api.html">
   <link rel="alternate" type="application/rss+xml" title="Beck Programming Blog" href="https://matheus-beck.github.io//blog/feed.xml">
 </head>
 
@@ -57,22 +57,12 @@
         <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
 
   <header class="post-header">
-    <h1 class="post-title" itemprop="name headline">Hello World!</h1>
-    <p class="post-meta"><time datetime="2019-08-13T21:27:56-03:00" itemprop="datePublished">Aug 13, 2019</time></p>
+    <h1 class="post-title" itemprop="name headline">Concepts of REST API</h1>
+    <p class="post-meta"><time datetime="2019-08-25T18:21:56-03:00" itemprop="datePublished">Aug 25, 2019</time></p>
   </header>
 
   <div class="post-content" itemprop="articleBody">
-    <p>Hello World,</p>
-
-<p>My name is Matheus Beck and I’m passionate about learning new technologies and build things using code!</p>
-
-<p>That’s why I decided to start this blog: to improve myself as a developer.</p>
-
-<p>I’m from Brazil and I started programming in 2014 when I started the bachelors of computer engineering at Federal University of Bahia (UFBA). At UFBA, I learned a lot from the courses of Introduction to Logical Programming, Object-Oriented Programming, Data Structures and Algorithms, Software Engineering and Operating Systems.</p>
-
-<p>Until July of 2016, I have learned C, C++ and Java but I wasn’t so passionate about coding. It all changed in August 2016 when I got a scholarship from CAPES to study computer science for one year at <a href="http://ensimag.grenoble-inp.fr/">Ensimag - Grenoble INP</a> in France through the BRAFITEC exchange program. At Grenoble, I learned French and I got a strong foundation in computer science. From there, I fell in love with programming.</p>
-
-<style>
+    <style>
   .center {
     display: block;
     margin-left: auto;
@@ -82,17 +72,109 @@
 </style>
 
 <figure class="image">
-  <img class="center" src="/blog/assets/mr-robot.jpg" alt="I'm also a big fan of Mr. Robot :nerd_face:" />
-  <figcaption style="text-align: center">I'm also a big fan of Mr. Robot :nerd_face:</figcaption>
+  <img class="center" src="/blog/assets/rest-api.png" alt="" />
+  <figcaption style="text-align: center"></figcaption>
 </figure>
 
-<p>When I returned to Brazil I got a job at <a href="http://www.consiste.com.br">Consiste Consultoria e Sistemas</a> as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams from the candidates to an internship.</p>
+<style>
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+</style>
 
-<p>After one year, I got my second internship at <a href="https://www.ericsson.com/en">Ericsson Inovação S.A.</a> where I’m currently working. At Ericsson, I’m working with the development of an automation framework for the telecom industry using Typescript, Node.js and Cucumber. I also worked with the execution of manual tests using RESTful Web Services on SoapUI, Postman and Apache JMeter and the development of automated tests using Ruby and Cucumber.</p>
+<h2 id="rest-api">REST API</h2>
 
-<p>You can verify some of my projects on my <a href="http://www.github.com/matheus-beck/">GitHub</a> or my <a href="http://www.gitshowcase.com/matheus-beck">Portfolio Page</a> and I really hope to help you somehow in some programming topic.</p>
+<p>A REST API is an architecture of development that works as a flux of requests and responses.</p>
 
-<p>Thank you!</p>
+<h2 id="how-does-it-work">How does it work?</h2>
+
+<p>Requisitions, like a browser accessing a URL via ajax (Asynchronous JavaScript and XML), are made by the client. When a request is made to our backend, like a Node.js server, a response is sent through a data structure like a JSON (JavaScript Object Notation). The client receives this data structure and process as he wants.</p>
+
+<h2 id="advantages">Advantages</h2>
+
+<ol>
+<li> Multiple front-ends using the same back-end </li>
+<li> A standardized protocol of communication </li>
+</ol>
+
+<h2 id="request-content-of-a-rest-api">Request content of a REST API</h2>
+
+<p>A REST API uses routes of communication that uses HTTP methods ( GET, POST, PUT and DELETE).</p>
+
+<p>Examples:</p>
+
+<table class="tablelines">
+  <thead>
+    <tr>
+      <th>HTTP method</th>
+      <th>URL</th>
+      <th>Route</th>
+      <th>Route Parameters</th>
+      <th>Query Parameters</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>GET</td>
+      <td>http://myapi.com</td>
+      <td>/users</td>
+      <td> </td>
+      <td>?page=2</td>
+    </tr>
+    <tr>
+      <td>POST</td>
+      <td>http://myapi.com</td>
+      <td>/users</td>
+      <td> </td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>PUT</td>
+      <td>http://myapi.com</td>
+      <td>/users</td>
+      <td>/1</td>
+      <td> </td>
+    </tr>
+    <tr>
+      <td>DELETE</td>
+      <td>http://myapi.com</td>
+      <td>/users</td>
+      <td>/1</td>
+      <td> </td>
+    </tr>
+  </tbody>
+</table>
+
+<p><br />POST and PUT methods can also send a <em>request body</em> in their requests. The advantage of this is that request body parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure. An example of a request body would be:</p>
+<div class="language-json highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Matheus"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"email"</span><span class="p">:</span><span class="w"> </span><span class="s2">"matheus.alencarbeck@gmail.com"</span><span class="w">
+</span><span class="p">}</span><span class="w">
+</span></code></pre></div></div>
+<p>Another parameter that all HTTP methods described here can use is <em>Headers</em>. They are additional data that are not related to the requisition content. Example: It can be used to send authentication like a location.</p>
+
+<h2 id="http-codes">HTTP codes</h2>
+
+<p>HTTP codes represent the possible states of an HTTP response. They can be:</p>
+
+<p>1xx: Informational<br />
+2xx: Sucess<br />
+    200 Sucess<br />
+    201 Created<br />
+3xx: Redirection<br />
+    301 Moved Permanently<br />
+    302 Moved<br />
+4xx: Client Error<br />
+    400 Bad request<br />
+    401 Unauthorized<br />
+    404 Not found<br />
+5xx: Server Error<br />
+    500 Internal Server Errors</p>
+
+<p><br />Thank you for your time! I hope you have liked this post! :relaxed:</p>
+
+<hr />
+<p><br />Source: <a href="https://rocketseat.com.br/">GoStack Bootcamp from RocketSeat</a></p>
 
 
   </div>

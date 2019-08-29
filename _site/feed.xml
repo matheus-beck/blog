@@ -2,22 +2,548 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Beck Programming Blog</title>
-    <description>I&#39;m a computer engineering student at Federal University of Bahia who loves software development.  This blog has the purpose of helping me track my programming learning journey and to improve my learning process by forcing me to teach someone else what I&#39;ve been learning. 
+    <description>I&#39;m a computer engineering student at Federal University of Bahia who loves software development.  This blog has the purpose of helping me track my programming learning journey and to improve my learning process by forcing me to teach someone else what I&#39;ve been learning.
 </description>
-    <link>http://yourdomain.com/</link>
-    <atom:link href="http://yourdomain.com/feed.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 18 Aug 2019 16:59:39 -0300</pubDate>
-    <lastBuildDate>Sun, 18 Aug 2019 16:59:39 -0300</lastBuildDate>
+    <link>https://matheus-beck.github.io//blog/</link>
+    <atom:link href="https://matheus-beck.github.io//blog/feed.xml" rel="self" type="application/rss+xml"/>
+    <pubDate>Wed, 28 Aug 2019 21:47:53 -0300</pubDate>
+    <lastBuildDate>Wed, 28 Aug 2019 21:47:53 -0300</lastBuildDate>
     <generator>Jekyll v3.1.6</generator>
     
       <item>
-        <title>Helping Daenerys Targaryen using C</title>
-        <description>&lt;figure class=&quot;image&quot;&gt;
-    &lt;img src=&quot;/assets/daenerys.jpg&quot; alt=&quot;Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons &quot; /&gt;
-    &lt;figcaption style=&quot;text-align: center&quot;&gt;Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons &lt;/figcaption&gt;
-  &lt;/figure&gt;
+        <title>CRUD using Express.js middleware</title>
+        <description>&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
 
-&lt;p&gt;&lt;br /&gt;At the beginning of 2018 I took a class at UFBA, MATA40 - Algorithms and Data Structures, that made me solve a lot of programming execersices using a programming language called C.&lt;/p&gt;
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/crud.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;crud&quot;&gt;CRUD&lt;/h2&gt;
+
+&lt;p&gt;CRUD means CREATE, READ, UPDATE and DELETE. In this article, we’re going to create these four functions, in an Express.js server, to handle a simple local array (This array will represent our database)&lt;/p&gt;
+
+&lt;h2 id=&quot;server-structure&quot;&gt;Server structure&lt;/h2&gt;
+
+&lt;p&gt;Create a folder called &lt;code class=&quot;highlighter-rouge&quot;&gt;src&lt;/code&gt; and run the commands &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn init -y&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;yarn add express&lt;/code&gt; inside that folder. Create a file &lt;code class=&quot;highlighter-rouge&quot;&gt;index.js&lt;/code&gt; with the structure of our server:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;express&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;());&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// Read JSON from req.body&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Paul&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;George&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;John&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Ringo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+&lt;span class=&quot;cm&quot;&gt;/*
+  All CRUD functions will be here
+*/&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;create&quot;&gt;Create&lt;/h2&gt;
+
+&lt;p&gt;To add a new user to our array, we’re going to use a &lt;code class=&quot;highlighter-rouge&quot;&gt;POST&lt;/code&gt; method and pass the name of the user through the body of our requisition. Add the following function to your code:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;push&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;read&quot;&gt;Read&lt;/h2&gt;
+
+&lt;p&gt;To read the users we’re going to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;GET&lt;/code&gt; method in two ways. One to read a specific user and the other to list all users in the array. Add the following functions to your code:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users/:index&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;update&quot;&gt;Update&lt;/h2&gt;
+
+&lt;p&gt;To update a user, we’re going to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;PUT&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users/:index&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;delete&quot;&gt;Delete&lt;/h2&gt;
+
+&lt;p&gt;Finally, to delete a user from our array we’re going to use the &lt;code class=&quot;highlighter-rouge&quot;&gt;DELETE&lt;/code&gt; method:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users/:index&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;splice&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;send&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2 id=&quot;middleware&quot;&gt;Middleware&lt;/h2&gt;
+
+&lt;p&gt;A middleware is a function that receives a requisition and response and process that data.
+Every function described here in the format (req, res) =&amp;gt; {/** Do stuff **/} is a middleware.
+In Express.js, we can call one or more middleware in our requisitions.&lt;/p&gt;
+
+&lt;p&gt;Here, we’re going to define a global middleware that is going to be called before every other middleware. It will calculate the time of every requisition and print the method and the URL that is being called. The &lt;code class=&quot;highlighter-rouge&quot;&gt;next&lt;/code&gt; parameter is necessary to call for the next middleware of our server instead of stopping the execution of the server:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;use&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;((&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;time&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;log&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`METHOD: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;method&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;; URL: &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;timeEnd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Request&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Create this two other middleware to check for errors in our calls to the server and add then to our CRUD methods:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserExists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;body&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User name is required&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;function&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserInArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;users&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;status&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;400&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;error&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;User does not exists&quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+  &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+  &lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;user&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;next&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;cm&quot;&gt;/* Same code ... */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users/:index&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserInArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;cm&quot;&gt;/* Same code ... */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserExists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;cm&quot;&gt;/* Same code ... */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;put&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users/:index&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserExists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserInArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;cm&quot;&gt;/* Same code ... */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;delete&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/users/:index&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;checkUserInArray&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+  &lt;span class=&quot;cm&quot;&gt;/* Same code ... */&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;To test our server, use a REST client like &lt;a href=&quot;https://insomnia.rest/&quot;&gt;Insomnia&lt;/a&gt;:&lt;/p&gt;
+
+&lt;h4 id=&quot;create-user&quot;&gt;CREATE USER:&lt;/h4&gt;
+
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/post.png&quot; alt=&quot;Create user example&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;Create user example&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h4 id=&quot;read-user&quot;&gt;READ USER:&lt;/h4&gt;
+
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/get-all.png&quot; alt=&quot;Read all users example&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;Read all users example&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/get-id.png&quot; alt=&quot;Read user by id example&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;Read user by id example&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h4 id=&quot;update-user&quot;&gt;UPDATE USER:&lt;/h4&gt;
+
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/update.png&quot; alt=&quot;Update user example&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;Update user example&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h4 id=&quot;delete-user&quot;&gt;DELETE USER:&lt;/h4&gt;
+
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/delete.png&quot; alt=&quot;Delete user example&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;Delete user example&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/after-delete.png&quot; alt=&quot;List after delete&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;List after delete&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;You can check the complete code in this repo: &lt;a href=&quot;https://github.com/matheus-beck/crud-express/&quot;&gt;https://github.com/matheus-beck/crud-express/&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;Thank you for your time! I hope you have liked this post! :smile:&lt;/p&gt;
+
+&lt;hr /&gt;
+
+&lt;p&gt;&lt;br /&gt;Source: &lt;a href=&quot;https://rocketseat.com.br/&quot;&gt;GoStack Bootcamp from RocketSeat&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 25 Aug 2019 18:21:56 -0300</pubDate>
+        <link>https://matheus-beck.github.io//blog/crud/node.js/express.js/2019/08/25/crud-express.html</link>
+        <guid isPermaLink="true">https://matheus-beck.github.io//blog/crud/node.js/express.js/2019/08/25/crud-express.html</guid>
+        
+        
+        <category>crud</category>
+        
+        <category>node.js</category>
+        
+        <category>express.js</category>
+        
+      </item>
+    
+      <item>
+        <title>Concepts of REST API</title>
+        <description>&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/rest-api.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;style&gt;
+.tablelines table, .tablelines td, .tablelines th {
+        border: 1px solid black;
+        }
+&lt;/style&gt;
+
+&lt;h2 id=&quot;rest-api&quot;&gt;REST API&lt;/h2&gt;
+
+&lt;p&gt;A REST API is an architecture of development that works as a flux of requests and responses.&lt;/p&gt;
+
+&lt;h2 id=&quot;how-does-it-work&quot;&gt;How does it work?&lt;/h2&gt;
+
+&lt;p&gt;Requisitions, like a browser accessing a URL via ajax (Asynchronous JavaScript and XML), are made by the client. When a request is made to our backend, like a Node.js server, a response is sent through a data structure like a JSON (JavaScript Object Notation). The client receives this data structure and process as he wants.&lt;/p&gt;
+
+&lt;h2 id=&quot;advantages&quot;&gt;Advantages&lt;/h2&gt;
+
+&lt;ol&gt;
+&lt;li&gt; Multiple front-ends using the same back-end &lt;/li&gt;
+&lt;li&gt; A standardized protocol of communication &lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;request-content-of-a-rest-api&quot;&gt;Request content of a REST API&lt;/h2&gt;
+
+&lt;p&gt;A REST API uses routes of communication that uses HTTP methods ( GET, POST, PUT and DELETE).&lt;/p&gt;
+
+&lt;p&gt;Examples:&lt;/p&gt;
+
+&lt;table class=&quot;tablelines&quot;&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;
+      &lt;th&gt;HTTP method&lt;/th&gt;
+      &lt;th&gt;URL&lt;/th&gt;
+      &lt;th&gt;Route&lt;/th&gt;
+      &lt;th&gt;Route Parameters&lt;/th&gt;
+      &lt;th&gt;Query Parameters&lt;/th&gt;
+    &lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;
+      &lt;td&gt;GET&lt;/td&gt;
+      &lt;td&gt;http://myapi.com&lt;/td&gt;
+      &lt;td&gt;/users&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt;?page=2&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;POST&lt;/td&gt;
+      &lt;td&gt;http://myapi.com&lt;/td&gt;
+      &lt;td&gt;/users&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;PUT&lt;/td&gt;
+      &lt;td&gt;http://myapi.com&lt;/td&gt;
+      &lt;td&gt;/users&lt;/td&gt;
+      &lt;td&gt;/1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+      &lt;td&gt;DELETE&lt;/td&gt;
+      &lt;td&gt;http://myapi.com&lt;/td&gt;
+      &lt;td&gt;/users&lt;/td&gt;
+      &lt;td&gt;/1&lt;/td&gt;
+      &lt;td&gt; &lt;/td&gt;
+    &lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;
+
+&lt;p&gt;&lt;br /&gt;POST and PUT methods can also send a &lt;em&gt;request body&lt;/em&gt; in their requests. The advantage of this is that request body parameters are not visible in the URL, which makes dealing with sensitive data, like passwords, more secure. An example of a request body would be:&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;name&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Matheus&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+    &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;email&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;matheus.alencarbeck@gmail.com&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;Another parameter that all HTTP methods described here can use is &lt;em&gt;Headers&lt;/em&gt;. They are additional data that are not related to the requisition content. Example: It can be used to send authentication like a location.&lt;/p&gt;
+
+&lt;h2 id=&quot;http-codes&quot;&gt;HTTP codes&lt;/h2&gt;
+
+&lt;p&gt;HTTP codes represent the possible states of an HTTP response. They can be:&lt;/p&gt;
+
+&lt;p&gt;1xx: Informational&lt;br /&gt;
+2xx: Sucess&lt;br /&gt;
+    200 Sucess&lt;br /&gt;
+    201 Created&lt;br /&gt;
+3xx: Redirection&lt;br /&gt;
+    301 Moved Permanently&lt;br /&gt;
+    302 Moved&lt;br /&gt;
+4xx: Client Error&lt;br /&gt;
+    400 Bad request&lt;br /&gt;
+    401 Unauthorized&lt;br /&gt;
+    404 Not found&lt;br /&gt;
+5xx: Server Error&lt;br /&gt;
+    500 Internal Server Errors&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;Thank you for your time! I hope you have liked this post! :relaxed:&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;Source: &lt;a href=&quot;https://rocketseat.com.br/&quot;&gt;GoStack Bootcamp from RocketSeat&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Sun, 25 Aug 2019 18:21:56 -0300</pubDate>
+        <link>https://matheus-beck.github.io//blog/rest/api/2019/08/25/concepts-of-rest-api.html</link>
+        <guid isPermaLink="true">https://matheus-beck.github.io//blog/rest/api/2019/08/25/concepts-of-rest-api.html</guid>
+        
+        
+        <category>rest</category>
+        
+        <category>api</category>
+        
+      </item>
+    
+      <item>
+        <title>Introduction to Node.js and Express.js</title>
+        <description>&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/node.png&quot; alt=&quot;&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;h2 id=&quot;what-is-nodejs&quot;&gt;What is Node.js?&lt;/h2&gt;
+
+&lt;p&gt;Node.js is a platform that allow us to use JavaScript in the backend. It is built on V8 (Google Chrome’s motor written in C++).&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-npm&quot;&gt;What is npm?&lt;/h2&gt;
+
+&lt;p&gt;The name &lt;code class=&quot;highlighter-rouge&quot;&gt;npm&lt;/code&gt; means Node Package Manager. It is used to install and manage third party libraries. It also allows us to publish our own libraries.&lt;/p&gt;
+
+&lt;h2 id=&quot;what-is-yarn&quot;&gt;What is Yarn?&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;Yarn&lt;/code&gt; is also a package manager for Node.js that allows us to do basically everything that &lt;code class=&quot;highlighter-rouge&quot;&gt;npm&lt;/code&gt; does but &lt;code class=&quot;highlighter-rouge&quot;&gt;Yarn&lt;/code&gt; has two main advantages:&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt; It is &lt;strong&gt;faster&lt;/strong&gt;. &lt;/li&gt;  
+  &lt;li&gt; It has functionalities that npm doesn&#39;t have. Example: Yarn Workspace. It is used to share dependencies between projects when we&#39;re working on multiple projects with the same dependencies in the same folder. &lt;/li&gt;   
+&lt;/ol&gt;
+
+&lt;h2 id=&quot;characteristics-of-nodejs&quot;&gt;Characteristics of Node.js&lt;/h2&gt;
+
+&lt;h4 id=&quot;architecture-event-loop&quot;&gt;Architecture Event-loop:&lt;/h4&gt;
+
+&lt;p&gt;This architecture is based on events been registered in the Call Stack. The Call Stack is a stack of events (a function that was triggered by our code) that Node.js process in an eternal loop.&lt;/p&gt;
+
+&lt;h4 id=&quot;single-thread&quot;&gt;Single-Thread&lt;/h4&gt;
+
+&lt;p&gt;It means it executes in a single thread of our processor. Imagine if we have a processor with four cores. Node.js won’t execute at the same time in all cores. All his process will be allocated in a single core. But, Node.js uses a lot of libs from C++, like libuv, that allow us to use multi threads of our processor. So, under the table, the C++ is using the other process threads to process our Call Stack in a faster and more efficient way.&lt;/p&gt;
+
+&lt;h4 id=&quot;non-blocking-io&quot;&gt;Non-blocking I/O&lt;/h4&gt;
+
+&lt;p&gt;It means that when we make a request to Node.js, like access a page that will return a list, we don’t have to return all data from once. Node.js can return this list in parts. It means that when giving a response to the client, Node.js won’t block the execution. Using this concept we can have real time applications like a chat. That is, when my front end calls my backend I can maintain an open connection to receive more and more requests.&lt;/p&gt;
+
+&lt;h2 id=&quot;expressjs&quot;&gt;ExpressJS&lt;/h2&gt;
+
+&lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ExpressJS&lt;/code&gt; is a Node.js framework very good for beginners because it allows us to create REST APIs faster and in a simple way. It is a micro-framework, i.e. small functionalities that play their functions very well. And it is very used in micro-services.&lt;/p&gt;
+
+&lt;h2 id=&quot;hello-nodejs&quot;&gt;Hello Node.js&lt;/h2&gt;
+
+&lt;p&gt;Create a folder called &lt;code class=&quot;highlighter-rouge&quot;&gt;hello-node&lt;/code&gt; and execute the following command inside that folder:&lt;/p&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;yarn init -y
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This command will initiate our project creating a file called &lt;code class=&quot;highlighter-rouge&quot;&gt;package.json&lt;/code&gt;. This file will save all the references to the dependencies that we’re going to use (like Express.js).&lt;/p&gt;
+
+&lt;p&gt;Also, inside that folder, execute the command:&lt;/p&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;yarn add express 
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;This command will install Express.js as our dependency. Realize that now we have a &lt;code class=&quot;highlighter-rouge&quot;&gt;node_modules&lt;/code&gt; folder containing the source code of Express.js and all the dependencies that Express.js uses.&lt;/p&gt;
+
+&lt;p&gt;Now, create a file called &lt;code class=&quot;highlighter-rouge&quot;&gt;index.js&lt;/code&gt; and type:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;require&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;express&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+
+&lt;span class=&quot;kd&quot;&gt;const&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;express&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;();&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;/&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;Hello Node&#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;listen&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3000&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now, if we run the command&lt;/p&gt;
+&lt;div class=&quot;language-console highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;go&quot;&gt;node index.js
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+&lt;p&gt;and access http://localhost:3000/ in our browser we’ll see that Node.js returned us an object like&lt;/p&gt;
+&lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;message&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;Hello Node&quot;&lt;/span&gt;&lt;span class=&quot;w&quot;&gt; &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We could have use &lt;code class=&quot;highlighter-rouge&quot;&gt;return res.send(&#39;Hello World&#39;);&lt;/code&gt; to return a string, but it is a best practice in the development of a &lt;a href=&quot;https://matheus-beck.github.io/blog/rest/api/2019/08/25/concepts-of-rest-api.html&quot;&gt;REST API&lt;/a&gt; to always make our backend return a JSON.&lt;/p&gt;
+
+&lt;h2 id=&quot;getting-query-parameters-and-route-parameters&quot;&gt;Getting Query Parameters and Route Parameters&lt;/h2&gt;
+
+&lt;p&gt;To pass and access data through query parameters or route parameters we could use:&lt;/p&gt;
+
+&lt;div class=&quot;language-javascript highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;c1&quot;&gt;// Getting Query Parameters&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Example: http://localhost:3000/?name=Matheus&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;/&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`Hello &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;query&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;// Getting Route Parameters&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;// Example: http://localhost:3000/users/1&lt;/span&gt;
+
+&lt;span class=&quot;nx&quot;&gt;server&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;/users/:id&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;res&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;json&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;({&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;message&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;`Acessing user with id &lt;/span&gt;&lt;span class=&quot;p&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;req&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;params&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;id&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;`&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;span class=&quot;p&quot;&gt;});&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;br /&gt;Thank you for your time! I hope you have liked this post! :smile:&lt;/p&gt;
+
+&lt;hr /&gt;
+&lt;p&gt;&lt;br /&gt;Source: &lt;a href=&quot;https://rocketseat.com.br/&quot;&gt;GoStack Bootcamp from RocketSeat&lt;/a&gt;&lt;/p&gt;
+
+</description>
+        <pubDate>Tue, 20 Aug 2019 18:21:56 -0300</pubDate>
+        <link>https://matheus-beck.github.io//blog/node.js/express.js/2019/08/20/introduction-to-node-js-and-express-js.html</link>
+        <guid isPermaLink="true">https://matheus-beck.github.io//blog/node.js/express.js/2019/08/20/introduction-to-node-js-and-express-js.html</guid>
+        
+        
+        <category>node.js</category>
+        
+        <category>express.js</category>
+        
+      </item>
+    
+      <item>
+        <title>Helping Daenerys Targaryen using C</title>
+        <description>&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
+&lt;figure class=&quot;image&quot;&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/daenerys.jpg&quot; alt=&quot;Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons :dragon_face:&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;Daenerys of the House Targaryen, the First of Her Name, Breaker of Chains and Mother of Dragons :dragon_face:&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;p&gt;&lt;br /&gt;At the beginning of 2018, I took a class at UFBA, MATA40 - Algorithms and Data Structures, that made me solve a lot of programming exercises using a programming language called C.&lt;/p&gt;
 
 &lt;p&gt;One of those exercises was really fun to solve. I’ve highlighted the most important sentences to solve this problem below:&lt;/p&gt;
 
@@ -26,7 +552,7 @@
 &lt;p&gt;&lt;br /&gt; &lt;strong&gt;General of the Immaculate&lt;/strong&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;Daenerys Targaryen is the leader of the mighty army of the Immaculate. As part of a deal, &lt;mark&gt;she promised to raffle a soldier to be proclaimed general of her army&lt;/mark&gt;. For the draw, &lt;mark&gt;she placed S pieces of parchment numbered 1 through S in a bag and drew a certain number I; The winner was the Ith soldier on her list&lt;/mark&gt;. But Daenerys lost the list of soldiers in her last fight, so she doesn’t know which number corresponds to each soldier. As a good queen, &lt;mark&gt; she knows the names of all her soldiers, and also that their numbers are assigned according to the alphabetical order. &lt;/mark&gt; But her soldiers are very anxious and soon want to know who was the ovent, chosen to be the general. Given the names of Daenerys’s soldiers and the number drawn, determine the name of the soldiers who must be the new Immaculate general.&lt;/p&gt;
+  &lt;p&gt;Daenerys Targaryen is the leader of the mighty army of the Immaculate. As part of a deal, &lt;mark&gt;she promised to raffle a soldier to be proclaimed general of her army&lt;/mark&gt;. For the draw, &lt;mark&gt;she placed S pieces of parchment numbered 1 through S in a bag and drew a certain number I; The winner was the Ith soldier on her list&lt;/mark&gt;. But Daenerys lost the list of soldiers in her last fight, so she doesn’t know which number corresponds to each soldier. As a good queen, &lt;mark&gt; she knows the names of all her soldiers, and also that their numbers are assigned according to the alphabetical order. &lt;/mark&gt; But her soldiers are very anxious and soon want to know who was the chosen to be the general. Given the names of Daenerys’s soldiers and the number drawn, determine the name of the soldiers who must be the new Immaculate general.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;&lt;strong&gt;Input:&lt;/strong&gt;&lt;/p&gt;
@@ -43,19 +569,15 @@
 
 &lt;p&gt;&lt;strong&gt;Examples:&lt;/strong&gt;&lt;/p&gt;
 
-&lt;p&gt;Input: 4 3&lt;br /&gt;
-Input: worm gray, hawk gleaming, golden eagle, draktonor&lt;br /&gt;
-Output: hawk gleaming&lt;/p&gt;
-
 &lt;p&gt;Input: 5 3&lt;br /&gt;
 Input: vilan, malganor, tristam, tylian, anduin&lt;br /&gt;
 Output: tristam&lt;/p&gt;
 
 &lt;hr /&gt;
 
-&lt;p&gt;&lt;br /&gt; First, let’s understand what the exercise is asking. From the text, we assume that given an bag with pieces of parchment that contain a number correspondig to one of the soldiers, Daenerys will randomly pick a number from that bag and the soldier correspondig to that number will be the general. The soldiers are numered according to the alphabetical order.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt; First, let’s understand what the exercise is asking. From the text, we assume that given a bag with pieces of parchment that contain a number corresponding to one of the soldiers, Daenerys will randomly pick a number from that bag and the soldier correspondig to that number will be the general. The soldiers are numbered according to the alphabetical order.&lt;/p&gt;
 
-&lt;p&gt;To achieve that, create a file called &lt;code class=&quot;highlighter-rouge&quot;&gt;imacculate.c&lt;/code&gt; and write the following, correspondig to the first part of our input (Two integers corresponding to the amount of soldiers that will be inserted and the number drawn from the bag):&lt;/p&gt;
+&lt;p&gt;To achieve that, create a file called &lt;code class=&quot;highlighter-rouge&quot;&gt;immacculate.c&lt;/code&gt; and write the following, correspondig to the first part of our input (Two integers corresponding to the number of soldiers that will be inserted and the number drawn from the bag):&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 #include &amp;lt;stdlib.h&amp;gt;
@@ -68,13 +590,13 @@ Output: tristam&lt;/p&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;After that, we have to verify the condition that says 1 ≤ I ≤ S ≤ 100 and receive our list of soldiers. For standard, C returns 0 for sucess, so we’re going to assume 1 as our failling scnenario.&lt;/p&gt;
+&lt;p&gt;After that, we have to verify the condition that says 1 ≤ I ≤ S ≤ 100 and receive our list of soldiers. For standard, C returns 0 for success, so we’re going to assume 1 as our failing scenario.&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 #include &amp;lt;stdlib.h&amp;gt;
 &lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -96,9 +618,10 @@ Output: tristam&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 #include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
 &lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -127,9 +650,10 @@ Output: tristam&lt;/p&gt;
 
 &lt;div class=&quot;language-c highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;#include &amp;lt;stdio.h&amp;gt;
 #include &amp;lt;stdlib.h&amp;gt;
+#include &amp;lt;string.h&amp;gt;
 &lt;/span&gt;
 &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;main&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
+    &lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;j&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
     &lt;span class=&quot;n&quot;&gt;scanf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&quot;%d %d&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 
     &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;numberDrawn&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;soldiers&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;lt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;100&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
@@ -167,11 +691,11 @@ Output: tristam&lt;/p&gt;
 &lt;/span&gt;    &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
-&lt;p&gt;Thank you for your time, I hope you have like this post!&lt;/p&gt;
+&lt;p&gt;Thank you for your time, I hope you have liked this post!&lt;/p&gt;
 </description>
-        <pubDate>Thu, 15 Aug 2019 18:21:56 -0300</pubDate>
-        <link>http://yourdomain.com/presentation/2019/08/15/helping-daenerys-targaryen-using-c.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/presentation/2019/08/15/helping-daenerys-targaryen-using-c.html</guid>
+        <pubDate>Sun, 18 Aug 2019 18:21:56 -0300</pubDate>
+        <link>https://matheus-beck.github.io//blog/presentation/2019/08/18/helping-daenerys-targaryen-using-c.html</link>
+        <guid isPermaLink="true">https://matheus-beck.github.io//blog/presentation/2019/08/18/helping-daenerys-targaryen-using-c.html</guid>
         
         
         <category>presentation</category>
@@ -186,18 +710,27 @@ Output: tristam&lt;/p&gt;
 
 &lt;p&gt;That’s why I decided to start this blog: to improve myself as a developer.&lt;/p&gt;
 
-&lt;p&gt;I’m from Brazil and I started programming in 2014 when I started the bachelor’s of computer engineering at Federal University of Bahia (UFBA). At UFBA, I learned a lot in the courses of Introduction to Logical Programming, Object-Oriented Programming, Data Structures and Algorithms, Software Engineering and Operating Systems.&lt;/p&gt;
+&lt;p&gt;I’m from Brazil and I started programming in 2014 when I started the bachelors of computer engineering at Federal University of Bahia (UFBA). At UFBA, I learned a lot from the courses of Introduction to Logical Programming, Object-Oriented Programming, Data Structures and Algorithms, Software Engineering and Operating Systems.&lt;/p&gt;
 
 &lt;p&gt;Until July of 2016, I have learned C, C++ and Java but I wasn’t so passionate about coding. It all changed in August 2016 when I got a scholarship from CAPES to study computer science for one year at &lt;a href=&quot;http://ensimag.grenoble-inp.fr/&quot;&gt;Ensimag - Grenoble INP&lt;/a&gt; in France through the BRAFITEC exchange program. At Grenoble, I learned French and I got a strong foundation in computer science. From there, I fell in love with programming.&lt;/p&gt;
 
+&lt;style&gt;
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100%;
+  }
+&lt;/style&gt;
+
 &lt;figure class=&quot;image&quot;&gt;
-    &lt;img src=&quot;blog/assets/mr-robot.jpg&quot; alt=&quot;I&#39;m also a big fan of Mr. Robot :)&quot; /&gt;
-    &lt;figcaption style=&quot;text-align: center&quot;&gt;I&#39;m also a big fan of Mr. Robot :)&lt;/figcaption&gt;
-  &lt;/figure&gt;
+  &lt;img class=&quot;center&quot; src=&quot;/blog/assets/mr-robot.jpg&quot; alt=&quot;I&#39;m also a big fan of Mr. Robot :nerd_face:&quot; /&gt;
+  &lt;figcaption style=&quot;text-align: center&quot;&gt;I&#39;m also a big fan of Mr. Robot :nerd_face:&lt;/figcaption&gt;
+&lt;/figure&gt;
 
-&lt;p&gt;When I returned to Brazil I got a job at &lt;a href=&quot;http://www.consiste.com.br&quot;&gt;Consiste Consultoria e Sistemas&lt;/a&gt; as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams of candidates to internship.&lt;/p&gt;
+&lt;p&gt;When I returned to Brazil I got a job at &lt;a href=&quot;http://www.consiste.com.br&quot;&gt;Consiste Consultoria e Sistemas&lt;/a&gt; as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams from the candidates to an internship.&lt;/p&gt;
 
-&lt;p&gt;After one year, I got my second internship at &lt;a href=&quot;https://www.ericsson.com/en&quot;&gt;Ericsson Inovação S.A.&lt;/a&gt; where I’m currently working. At Ericsson I’m working with the development of an automation framework for the telecom industry using Typescript, Node.js and Cucumber. I also worked with the execution of manual tests using RESTful Web Services on SoapUI, Postman and Apache JMeter and the development of automated tests using Ruby and Cucumber.&lt;/p&gt;
+&lt;p&gt;After one year, I got my second internship at &lt;a href=&quot;https://www.ericsson.com/en&quot;&gt;Ericsson Inovação S.A.&lt;/a&gt; where I’m currently working. At Ericsson, I’m working with the development of an automation framework for the telecom industry using Typescript, Node.js and Cucumber. I also worked with the execution of manual tests using RESTful Web Services on SoapUI, Postman and Apache JMeter and the development of automated tests using Ruby and Cucumber.&lt;/p&gt;
 
 &lt;p&gt;You can verify some of my projects on my &lt;a href=&quot;http://www.github.com/matheus-beck/&quot;&gt;GitHub&lt;/a&gt; or my &lt;a href=&quot;http://www.gitshowcase.com/matheus-beck&quot;&gt;Portfolio Page&lt;/a&gt; and I really hope to help you somehow in some programming topic.&lt;/p&gt;
 
@@ -205,8 +738,8 @@ Output: tristam&lt;/p&gt;
 
 </description>
         <pubDate>Tue, 13 Aug 2019 21:27:56 -0300</pubDate>
-        <link>http://yourdomain.com/presentation/2019/08/13/hello-world.html</link>
-        <guid isPermaLink="true">http://yourdomain.com/presentation/2019/08/13/hello-world.html</guid>
+        <link>https://matheus-beck.github.io//blog/presentation/2019/08/13/hello-world.html</link>
+        <guid isPermaLink="true">https://matheus-beck.github.io//blog/presentation/2019/08/13/hello-world.html</guid>
         
         
         <category>presentation</category>
