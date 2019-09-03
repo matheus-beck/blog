@@ -75,7 +75,7 @@ To install these dependencies run inside the `backend` folder:
 yarn add nodemon sucrase -D
 ```
 
-Also, create a file called nodemon.json in the `backend` folder and type the following
+Also, create a file called `nodemon.json` in the `backend` folder and type the following
 to indicate nodemon to launch sucrase-node instead of node when it is executed:
 
 ```
