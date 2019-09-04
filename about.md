@@ -5,9 +5,9 @@ permalink: /about/
 ---
 # Matheus Beck  
 <div style="text-align:justify">
-I'm a computer engineering student at the Federal University of Bahia who loves software development :man_technologist:  
+I'm a computer engineering student at [UFBA](https://www.ufba.br/) who loves software development :man_technologist:  
 <br>
-In 2016 I got a scholarship from CAPES to study computer science for one year at Grenoble INP - Ensimag in France :croissant:    
+In 2016 I got a scholarship from CAPES to study computer science for one year at [Grenoble INP - Ensimag](http://ensimag.grenoble-inp.fr/) in France :croissant:    
 <br>
 I have more than one year of work experience in the software industry :factory:
 </div>
