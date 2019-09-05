@@ -98,7 +98,7 @@ Now, in the package.json file, create the following object script as one of the 
 <br>**ESLint** verifies if the code is following the established patterns.
 <br>**Prettier** verify code patterns like the size of the code line.
 
-First, install the [ESLint extension for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+First, install the [ESLint extension for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint).  
 Then, execute `yarn eslint --init` and use the following config:  
 {% include image.html url="/blog/assets/eslint-config.png" description="" %}  
 
