@@ -5,7 +5,7 @@ date: 2019-09-05 18:21:56 -0300
 categories: docker
 ---
 
-{% include image.html url="/blog/assets/docker.png" description=":whale:" %}
+{% include image.html url="/blog/assets/docker.png" description="*Docker is a tool designed to make it easier to create, deploy, and run applications by using containers.* - opensource.com :whale:" %}
 
 # What is Docker?
 
@@ -19,12 +19,12 @@ This containers does not interefeer in the rest of our computer.
 Conteriners also exposes **ports** for communication.
 
 # Concepts
-
-Image: Service avaiable via Docker. i.e, techs that whe can store in containers.  
-Container: Instance of an image.  
-Docker Registry (Docker Hub) : Works similar to npm js;  
-Dockerfile: "Recepet" of an image
-
+<ul>
+<li>Image: Service avaiable via Docker. i.e, techs that whe can store in containers.</li>  
+<li>Container: Instance of an image. </li>
+<li>Docker Registry (Docker Hub): Works similar to npm js </li>  
+<li>Dockerfile: "Recepet" of an image </li>
+</ul>  
 # Dockerfile example
 
 ```docker
