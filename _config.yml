@@ -9,8 +9,9 @@
 title: Beck Programming Blog
 email: matheus.alencabeck@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
-  I'm a computer engineering student at the Federal University of Bahia who loves software development. 
-  This blog has the purpose of helping me track my programming learning journey and to improve my learning process by forcing me to teach someone else what I've been learning.
+  Did you find any error or misconception? Help me to correct it! 😊
+  This is an open-source project, you can edit the text in the .md files directly from GitHub and open a pull-request.
+	This is a simple way to contribute with the software community 🤓
 baseurl: "/blog" # the subpath of your site, e.g. /blog
 url: "https://matheus-beck.github.io/" # the base hostname & protocol for your site
 linkedin_username: matheus-beck
@@ -21,3 +22,5 @@ plugins:
 
 # Build settings
 markdown: kramdown
+
+[directly from GitHub](https://github.com/matheus-beck/blog/tree/master/_posts)
