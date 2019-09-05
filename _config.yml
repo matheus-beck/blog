@@ -20,5 +20,3 @@ plugins:
 
 # Build settings
 markdown: kramdown
-
-[directly from GitHub](https://github.com/matheus-beck/blog/tree/master/_posts)
