@@ -1,2 +1,2 @@
 # blog
-This is my personal programming blog and you can check at: https://matheus-beck.github.io/blog/
+👨‍💻 This is my personal programming blog, built using [Jekyll](https://jekyllrb.com/), and you can check it at: https://matheus-beck.github.io/blog/
