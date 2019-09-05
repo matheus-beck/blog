@@ -72,7 +72,6 @@ To install these dependencies run inside the `backend` folder:
 yarn add nodemon sucrase eslint prettier eslint-config-prettier eslint-plugin-prettier -D
 ```
 ## Nodemon and Sucrase
-
 <br>**Nodemon** is a dependency that allows us to re-launch our server every time we change our code, making it easier to develop.
 <br>**Sucrase** allows us to use ES6 features in Node.js like the `import` syntax to make our code more legible.
 
@@ -96,13 +95,16 @@ Now, in the package.json file, create the following object script as one of the 
 ```
 
 ## ESLint and Prettier
-
 <br>**ESLint** verifies if the code is following the established patterns.
 <br>**Prettier** verify code patterns like the size of the code line.
 
-Execute: `yarn eslint --init` and remove the package-lock.json file if you're only using yarn. 
+First, install the [ESLint extension for VSCode](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
+Then, execute `yarn eslint --init` and use the following config:  
+{% include image.html url="/blog/assets/eslint-config.png" description="" %}  
 
-Also, run `yarn` in the project folder after installing all dependencies to map the newly installed dependencies in `yarn.lock`. Add the following to your `settings.json` file in vscode:
+After that, remove the package-lock.json file if you're only using yarn. 
+
+Also, run `yarn` in the project folder after installing all dependencies to map the newly installed dependencies in `yarn.lock`. Now, add the following to your `settings.json` file in vscode:
 
 ```
 "eslint.autoFixOnSave": true
