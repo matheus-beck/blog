@@ -172,7 +172,7 @@ To test our server, use a REST client like [Insomnia][insomnia]:
 {% include image.html url="/blog/assets/delete.png" description="Delete user example" %}
 {% include image.html url="/blog/assets/after-delete.png" description="List after delete" %}
 
-You can check the complete code in this repo: [https://github.com/matheus-beck/crud-express/][https://github.com/matheus-beck/crud-express/]
+You can check the complete code in this repo: [https://github.com/matheus-beck/users-manager/][https://github.com/matheus-beck/users-manager/]
 
 <br>Thank you for your time! I hope you have liked this post! :smile:
 
