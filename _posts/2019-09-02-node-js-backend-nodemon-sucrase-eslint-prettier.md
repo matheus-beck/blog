@@ -75,7 +75,7 @@ yarn add nodemon sucrase eslint prettier eslint-config-prettier eslint-plugin-pr
 <br>**Nodemon** is a dependency that allows us to re-launch our server every time we change our code, making it easier to develop.
 <br>**Sucrase** allows us to use ES6 features in Node.js like the `import` syntax to make our code more legible.
 
-To configure these dependencies, create a file called nodemon.json in the `backend` folder and type the following to indicate nodemon to launch sucrase-node instead of node when it is executed:
+To configure these dependencies, create a file called `nodemon.json` in the `backend` folder and type the following to indicate nodemon to launch sucrase-node instead of node when it is executed:
 
 ```
 {
@@ -107,7 +107,7 @@ After that, remove the package-lock.json file if you're only using yarn.
 Also, run `yarn` in the project folder after installing all dependencies to map the newly installed dependencies in `yarn.lock`. Now, add the following to your `settings.json` file in vscode:
 
 ```
-"eslint.autoFixOnSave": true
+"eslint.autoFixOnSave": true,
 "eslint.validate": [
     {
       "language": "javascript",
@@ -137,7 +137,7 @@ And add the following to use prettier in the same `.eslintrc.js` file:
   plugins: ["prettier"],
 ```
 
-Finally, create a `.prettierrc` file in the source folder with the following:
+Finally, create a `.prettierrc.json` file in the source folder with the following:
 
 ```
 {
