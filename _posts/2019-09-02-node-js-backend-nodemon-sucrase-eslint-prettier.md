@@ -137,7 +137,7 @@ And add the following to use prettier in the same `.eslintrc.js` file:
   plugins: ["prettier"],
 ```
 
-Finally, create a `.prettierrc.json` file in the source folder with the following:
+Finally, create a `.prettierrc` file in the source folder with the following:
 
 ```
 {
