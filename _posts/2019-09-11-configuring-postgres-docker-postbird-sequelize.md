@@ -84,7 +84,7 @@ Create an `app` folder to store our models and controllers and a `database` fold
 Now, to generate a model of our migration run:
 
 ```console
-yarn sequelize migration:create --name=create-users creates a migration model
+yarn sequelize migration:create --name=create-users 
 ```
 
 Edit the created migration in the `src/database/migrations` folder to be like that:
