@@ -76,7 +76,7 @@ export default new UserController();
 
 The View is the return to the client. In an application, it could be an HTML for example. In this case of a REST API, the View will only be a JSON that will be returned to our front-end and after that, it will be manipulated for ReactJS or React Native for example.
 
-<br>Thank you for your time! I hope you have liked this post! 😊
+<br>Thank you for your time! I hope you have liked this post! 😇
 
 ---
 
