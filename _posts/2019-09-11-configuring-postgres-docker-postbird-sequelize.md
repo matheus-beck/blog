@@ -1,15 +1,15 @@
 ---
 layout: post
-title: "PostgreeSql configuration using Docker, Postbird and Sequelize"
+title: "PostgreSQL configuration using Docker, Postbird and Sequelize"
 date: 2019-09-11 18:21:56 -0300
-categories: docker postgreesql postbird sequelize
+categories: docker postgresql postbird sequelize
 ---
 
 {% include image.html url="/blog/assets/postgres-docker.png" description="" %}
 
 _PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance - https://www.postgresql.org/_
 
-# Configuring PostgreeSQL with Docker
+# Configuring PostgreSQL with Docker
 
 Having [Docker](https://docs.docker.com/install/) installed in your machine, go to your terminal and run:
 
