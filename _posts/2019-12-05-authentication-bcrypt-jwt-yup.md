@@ -6,6 +6,10 @@ date: 2019-12-05 18:21:56 -0300
 categories: node.js express.js bcrypt jwt yup
 ---
 
+<h1 align="center">
+  <img src="https://vidadeprogramador.com.br/wp-content/uploads/2015/12/tirinha1503.png" width="500">
+</h1>
+
 # Password Cryptography using BCrypt
 
 Go to the source folder of your project and run:
