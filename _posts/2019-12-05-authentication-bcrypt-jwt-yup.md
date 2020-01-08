@@ -68,6 +68,15 @@ You can use `Yup` to validate if the user is passing all the content required in
 
 You can use `JWT` to authenticate your JSON requisitions. [JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.](https://jwt.io/introduction/)
 
+Create a `config/auth.js` file with the following (you can use any secret):
+
+```javascript
+export default {
+  secret: 'A10F8B76D4C3FFC8CF790EE3B6E6AF8E',
+  expiresIn: '7d',
+};
+```
+
 And then in your `SessionController.js` add the following code:
 
 ```javascript
