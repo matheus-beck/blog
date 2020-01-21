@@ -128,10 +128,6 @@ class SessionController {
 export default new SessionController();
 ```
 
-Now, you can see by the image below the encrypted password in our database when we try to create a User:
-
-{% include image.html url="/blog/assets/bcrypt.png" description="Postbird interface of a PosgreeSQL database running on Docker after the creation of a user" %}
-
 <br>Thank you for your time! I hope you have liked this post! 😊
 
 ---
