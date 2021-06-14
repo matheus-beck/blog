@@ -14,7 +14,7 @@ I'm from Brazil and I started programming in 2014 when I started the bachelors o
 
 Until July of 2016, I have learned C, C++ and Java but I wasn't so passionate about coding. It all changed in August 2016 when I got a scholarship from CAPES to study computer science for one year at [Ensimag - Grenoble INP][ensimag] in France through the BRAFITEC exchange program. At Grenoble, I learned French and I got a strong foundation in computer science. From there, I fell in love with programming. 
 
-{% include image.html url="/blog/assets/mr-robot.jpg" description="I'm also a big fan of Mr. Robot :nerd_face:" %}
+{% include image.html url="/jekyll-blog/assets/mr-robot.jpg" description="I'm also a big fan of Mr. Robot :nerd_face:" %}
 
 When I returned to Brazil I got a job at [Consiste Consultoria e Sistemas][consiste] as a developer intern. My main activities during one year were to develop agents (macros) using LotusScript and JavaScript to automate database tasks with IBM Domino and IBM Notes. I was also executing manual tests on the big data software called XTR powered by the company. Besides that, I was responsible to correct logic programming exams from the candidates to an internship.
 
