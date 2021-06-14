@@ -10,7 +10,7 @@ title: Beck Programming Blog
 email: matheus.alencabeck@gmail.com
 description: > # this means to ignore newlines until "baseurl:"
   Did you find any error or misconception? Help me to correct it! 😊 This is an open-source project, you can edit the text in the .md files <a href="https://github.com/matheus-beck/blog/tree/master/_posts">directly from GitHub</a> and open a pull-request. This is a simple way to contribute with the software community! 🤓 
-baseurl: "/blog" # the subpath of your site, e.g. /blog
+baseurl: "/jekyll-blog" # the subpath of your site, e.g. /blog
 url: "https://matheus-beck.github.io/" # the base hostname & protocol for your site
 linkedin_username: matheus-beck
 github_username: matheus-beck
