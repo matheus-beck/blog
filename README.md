@@ -11,7 +11,7 @@
 ![blog-screen](https://i.imgur.com/e3C2bUY.png)
 
 <h2><a class="anchor" aria-hidden="true" href="#memo-license">👨‍💻</a> Description </h2>
-<p>This is my personal programming blog, built using <a href = "https://jekyllrb.com/">Jekyll</a>, and you can check it at: https://matheus-beck.github.io/blog/</p>
+<p>This is my personal programming blog, built using <a href = "https://jekyllrb.com/">Jekyll</a>, and you can check it at: https://matheus-beck.github.io/jekyll-blog/</p>
 
 <h2><a class="anchor" aria-hidden="true" href="#memo-license">:pencil:</a> License </h2>
 <p>This project is under the MIT license. See the <a href="https://github.com/matheus-beck/blog/blob/master/LICENSE">LICENSE</a> for more information.</p>
