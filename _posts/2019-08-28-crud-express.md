@@ -5,7 +5,7 @@ date: 2019-08-28 18:21:56 -0300
 categories: crud node.js express.js
 ---
 
-{% include image.html url="/blog/assets/crud.png" description="" %}
+{% include image.html url="/jekyll-blog/assets/crud.png" description="" %}
 
 ## CRUD
 
