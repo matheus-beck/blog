@@ -5,7 +5,7 @@ date: 2019-09-22 18:21:56 -0300
 categories: mvc restapi nodejs expressjs
 ---
 
-{% include image.html url="/jekyll-blog/assets/mvc.png" description="www.raywenderlich.com" %}
+{% include image.html url="/blog/assets/mvc.png" description="www.raywenderlich.com" %}
 
 # MVC Architecture
 

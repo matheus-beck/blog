@@ -5,7 +5,7 @@ date: 2019-08-20 18:21:56 -0300
 categories: node.js express.js
 ---
 
-{% include image.html url="/jekyll-blog/assets/node.png" description="" %}
+{% include image.html url="/blog/assets/node.png" description="" %}
 
 ## What is Node.js?
 

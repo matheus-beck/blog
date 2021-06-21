@@ -5,7 +5,7 @@ date: 2019-09-11 18:21:56 -0300
 categories: docker postgresql postbird sequelize
 ---
 
-{% include image.html url="/jekyll-blog/assets/postgres-docker.png" description="" %}
+{% include image.html url="/blog/assets/postgres-docker.png" description="" %}
 
 _PostgreSQL is a powerful, open source object-relational database system with over 30 years of active development that has earned it a strong reputation for reliability, feature robustness, and performance - https://www.postgresql.org/_
 

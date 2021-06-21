@@ -5,7 +5,7 @@ date: 2019-09-05 18:21:56 -0300
 categories: docker
 ---
 
-{% include image.html url="/jekyll-blog/assets/docker.png" description="Docker is a tool designed to make it easier to create, deploy, and run applications by using containers - opensource.com :whale:" %}
+{% include image.html url="/blog/assets/docker.png" description="Docker is a tool designed to make it easier to create, deploy, and run applications by using containers - opensource.com :whale:" %}
 
 # What is Docker?
 

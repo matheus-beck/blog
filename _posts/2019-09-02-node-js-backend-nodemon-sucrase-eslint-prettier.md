@@ -5,7 +5,7 @@ date: 2019-09-02 18:21:56 -0300
 categories: nodemon sucrase eslint prettier node.js express.js
 ---
 
-{% include image.html url="/jekyll-blog/assets/node-2.png" description="" %}
+{% include image.html url="/blog/assets/node-2.png" description="" %}
 
 ## Node.js Backend using Nodemon, Sucrase, ESLint and Prettier
 
